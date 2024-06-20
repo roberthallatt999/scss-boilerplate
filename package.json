@@ -1,0 +1,33 @@
+{
+  "name": "leonescreamery",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev:remove-version-css": "node bld-remove-version-css.js",
+    "dev": "npm run dev:remove-version-css && browser-sync start --config 'bs-config.js' | npm run dev:sass",
+    "dev:sass": "sass ./src/assets/scss/main.scss ./css/custom.css -w",
+    "prod:sass": "sass ./src/assets/scss/main.scss ./css/custom.css --style compressed",
+    "prod:add-version-css": "node bld-add-version-css.js",
+    "prod:prefix": "postcss ./css/custom.css -u autoprefixer -r --no-map",
+    "prod": "npm run prod:sass && npm run prod:prefix && npm run prod:add-version-css",
+    "cert": "rm -rf cert && mkdir -p cert && docker cp ddev-router:/etc/nginx/certs /Users/robert/data/digital-designs/leonescreamery/src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "sass": "^1.77.5"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.5.1",
+    "browser-sync": "^3.0.2",
+    "browserslist": "^4.5.4",
+    "postcss": "^7.0.14",
+    "postcss-cli": "^6.1.2"
+  },
+  "browserslist": [
+    "last 4 version"
+  ]
+}
