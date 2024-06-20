@@ -11,21 +11,22 @@
  |
  |
  */
+
+ import pkg from './package.json';
+
  module.exports = {
     "ui": {
-        "port": 3001
+        "port": pkg.browsersync.uiPort
     },
-    "files": [
-        "/files/to/watchpath/**/*",
-    ],
+    "files": pkg.browsersync.files,
     "watch": true,
     "watchOptions": {
       "usePolling": true,
       "interval": 500,
     },
     "server": false,
-    "proxy": 'https://example.com',
-    "port": 3000,
+    "proxy": pkg.browsersync.proxyUrl,
+    "port": pkg.browsersync.port,
     "open": "false",
     "https": {
         //
@@ -33,7 +34,7 @@
         // 2. allow Browsersync to access key: sudo chmod o+x /etc/ssl/private
         // 3. run -> docker cp ddev-router:/etc/nginx/certs /Users/robert/data/digital-designs/leonescreamery/.cert
         //
-        key: '/path/to/certs/master.key',
-        cert: 'path/to/certs/master.crt',
+        key: pkg.browsersync.sslKey,
+        cert: pkg.browsersync.sslCert,
       },
 };

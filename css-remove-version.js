@@ -1,8 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const htmlFilePath = '/Users/robert/data/digital-designs/leonescreamery/lcmin/user/templates/default_site/layouts.group/_layout_main.html';
-const cssDirPath = '/Users/robert/data/digital-designs/leonescreamery/css';
+import pkg from './package.json';
+
+const htmlFilePath = '/path/to/html/file.html';
+const cssDirPath = '/pth/to/css/dir';
 
 fs.readFile(htmlFilePath, 'utf8', (err, htmlContent) => {
   if (err) {

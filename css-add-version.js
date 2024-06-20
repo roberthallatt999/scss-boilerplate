@@ -1,9 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const htmlFilePath = '/Users/robert/data/digital-designs/leonescreamery/lcmin/user/templates/default_site/layouts.group/_layout_main.html';
-const cssDirPath = '/Users/robert/data/digital-designs/leonescreamery/css';
-const cssFileName = 'custom.css';
+import pkg from './package.json';
+
+const htmlFilePath = pkg.vars.htmlFile;
+const cssDirPath = pkg.paths.assets.cssFolder;
+const cssFileName = pkg.vars.cssFile;
 const version = Date.now(); // Simple versioning using timestamp
 
 fs.readFile(htmlFilePath, 'utf8', (err, htmlContent) => {
