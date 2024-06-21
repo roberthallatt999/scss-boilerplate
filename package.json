@@ -1,40 +1,54 @@
 {
   "name": "scss-boilerplate",
   "version": "1.0.0",
+  "type": "commonjs",
   "main": "index.js",
   "keywords": [],
-  "author": "",
+  "author": "Robert Hallatt",
   "license": "ISC",
-  "description": "",
-  "browsersync": {
-    "sslKey": "path/to/certs/master.key",
-    "sslCert": "path/to/certs/master.crt",
-    "proxyUrl": "https://example.com'",
-    "files": [
-      "src/assets/jplist/**/*.{js,css}",
-      "src/assets/paginatejs/**/*.{js,css}"
-    ],
-    "port": "3000",
-    "uiPort": "3001"
-  },
-  "paths": {
-    "assets": {
-      "cssFolder": "path to css output folder"
+  "description": "A simple boilerplate for developing with SCSS",
+  "config": {
+    "browsersync": {
+      "sslKey": "./src/assets/certs/master.key",
+      "sslCert": "./src/assets/certs/master.crt",
+      "proxyUrl": "https://example.test",
+      "files": {
+        "watch": [
+          "src/assets/scss/**/*.scss",
+          "dist/**/*.html"
+        ]
+      },
+      "port": "3000",
+      "uiPort": "3001"
+    },
+    "vars": {
+      "css": {
+        "fileFullPath": "./dist/assets/css/app.css",
+        "file": "app.css"
+      },
+      "html": { 
+        "template": "./dist/index.html"
+      }
+    },
+    "paths": {
+      "src": {
+        "certs": "./src/assets/certs",
+        "assets": "./src/assets"
+      },
+      "dist": {
+        "css": "./dist/assets/css"
+      }
     }
   },
-  "vars": {
-    "cssFile": "your custom css file name",
-    "htmlFile": "path to your html layout file that contains the css file reference"
-  },
   "scripts": {
-    "dev": "npm run dev:css-remove-version && browser-sync start --config 'bs-config.js' | npm run dev:sass",
-    "dev:css-remove-version": "node css-remove-version.js",
-    "dev:sass": "sass ./src/assets/scss/main.scss ${cssFile} -w",
-    "prod": "npm run prod:sass && npm run prod:prefix && npm run prod:add-version-css",
-    "prod:sass": "sass ./src/assets/scss/main.scss ${cssFile} --style compressed",
-    "prod:css-add-version": "node css-add-version.js",
-    "prod:prefix": "postcss ${cssFile} -u autoprefixer -r --no-map",
-    "cert": "rm -rf cert && mkdir -p cert && docker cp ddev-router:/etc/nginx/certs /src"
+    "dev": "npm run dev:css-remove-version && browser-sync start --config './src/build/browsersync-config.js' | npm run dev:sass",
+    "dev:css-remove-version": "node ./src/build/css-remove-version.js",
+    "dev:sass": "sass ./src/assets/scss/main.scss $npm_package_config_vars_css_fileFullPath -w",
+    "prod": "npm run prod:sass && npm run prod:prefix && npm run prod:css-add-version",
+    "prod:sass": "sass ./src/assets/scss/main.scss $npm_package_config_vars_css_fileFullPath --style compressed",
+    "prod:css-add-version": "node ./src/build/css-add-version.js",
+    "prod:prefix": "postcss $npm_package_config_vars_css_fileFullPath -u autoprefixer -r --no-map",
+    "cert": "rm -rf $npm_package_config_paths_src_certs && mkdir -p $npm_package_config_paths_src_certs && docker cp ddev-router:/etc/nginx/certs $npm_package_config_paths_src_assets"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.12",
@@ -48,7 +62,7 @@
     "postcss-cli": "^6.1.2"
   },
   "engines": {
-    "node": "16.0.0"
+    "node": "16"
   },
   "browserslist": [
     "last 4 version"

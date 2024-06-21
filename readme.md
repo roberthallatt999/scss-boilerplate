@@ -1,10 +1,14 @@
 # Sass Boilerplate
 
-This boilerplate is borrowed from and inspired by https://github.com/KittyGiraudel/sass-boilerplate/tree/master. Additional functionality has been added to watch changes in the browser and version control CSS.
+A simple boilerplate for developing a site with SCSS (credit to and inspired by https://github.com/KittyGiraudel/sass-boilerplate/tree/master).
 
-Each folder of this project has its own `README.md` file to explain the purpose and add extra information. Be sure to browse the repository to see how it works.
+## Requirments
 
-### To use
+- [node.js](https://nodejs.org/en) - version 16
+- [ddev](https://ddev.readthedocs.io/en/stable/users/install/)
+- [Docker](https://docs.docker.com/get-docker/)
+
+## To use
 
 - install dependencies and run the following command
 

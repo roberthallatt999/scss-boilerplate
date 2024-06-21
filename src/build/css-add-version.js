@@ -1,11 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-import pkg from './package.json';
+const pkgPath = './package.json';
+const pkgContents = fs.readFileSync(pkgPath, 'utf8');
+const pkg = JSON.parse(pkgContents);
 
-const htmlFilePath = pkg.vars.htmlFile;
-const cssDirPath = pkg.paths.assets.cssFolder;
-const cssFileName = pkg.vars.cssFile;
+const htmlFilePath = pkg.config.vars.html.template;
+const cssDirPath = pkg.config.paths.dist.css;
+const cssFileName = pkg.config.vars.css.file;
 const version = Date.now(); // Simple versioning using timestamp
 
 fs.readFile(htmlFilePath, 'utf8', (err, htmlContent) => {

@@ -12,29 +12,28 @@
  |
  */
 
- import pkg from './package.json';
+const fs = require('fs');
+
+const pkgPath = './package.json';
+const pkgContents = fs.readFileSync(pkgPath, 'utf8');
+const pkg = JSON.parse(pkgContents);
 
  module.exports = {
     "ui": {
-        "port": pkg.browsersync.uiPort
+        "port": pkg.config.browsersync.uiPort
     },
-    "files": pkg.browsersync.files,
+    "files": pkg.config.browsersync.files.watch,
     "watch": true,
     "watchOptions": {
       "usePolling": true,
       "interval": 500,
     },
     "server": false,
-    "proxy": pkg.browsersync.proxyUrl,
-    "port": pkg.browsersync.port,
+    "proxy": pkg.config.browsersync.proxyUrl,
+    "port": pkg.config.browsersync.port,
     "open": "false",
     "https": {
-        //
-        // 1. create local certs directory in shared folder
-        // 2. allow Browsersync to access key: sudo chmod o+x /etc/ssl/private
-        // 3. run -> docker cp ddev-router:/etc/nginx/certs /Users/robert/data/digital-designs/leonescreamery/.cert
-        //
-        key: pkg.browsersync.sslKey,
-        cert: pkg.browsersync.sslCert,
+        key: pkg.config.browsersync.sslKey,
+        cert: pkg.config.browsersync.sslCert,
       },
 };
