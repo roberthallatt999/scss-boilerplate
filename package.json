@@ -41,7 +41,7 @@
     }
   },
   "scripts": {
-    "dev": "npm run dev:css-remove-version && browser-sync start --config './src/build/browsersync-config.js' | npm run dev:sass",
+    "dev": "npm run dev:css-remove-version && npm run dev:sass & browser-sync start --config './src/build/browsersync-config.js'",
     "dev:css-remove-version": "node ./src/build/css-remove-version.js",
     "dev:sass": "sass ./src/assets/scss/main.scss $npm_package_config_vars_css_fileFullPath -w",
     "prod": "npm run prod:sass && npm run prod:prefix && npm run prod:css-add-version",

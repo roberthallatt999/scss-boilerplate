@@ -2,6 +2,8 @@
 
 A simple boilerplate for developing a site with SCSS (credit to and inspired by https://github.com/KittyGiraudel/sass-boilerplate/tree/master).
 
+This has been tested and works for Mac OS.
+
 ## Requirments
 
 - [node.js](https://nodejs.org/en) - version 16
