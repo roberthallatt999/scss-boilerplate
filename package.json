@@ -28,6 +28,12 @@
       },
       "html": { 
         "template": "./dist/index.html"
+      },
+      "build": {
+        "css": "./src/assets/scss/main.scss",
+        "browsersync": "./src/build/browsersync-config.js",
+        "cssRemoveVersion": "./src/build/css-remove-version.js",
+        "cssAddVersion": "./src/build/css-add-version.js"
       }
     },
     "paths": {
@@ -41,28 +47,29 @@
     }
   },
   "scripts": {
-    "dev": "npm run dev:css-remove-version && npm run dev:sass & browser-sync start --config './src/build/browsersync-config.js'",
-    "dev:css-remove-version": "node ./src/build/css-remove-version.js",
-    "dev:sass": "sass ./src/assets/scss/main.scss $npm_package_config_vars_css_fileFullPath -w",
+    "dev": "npm run dev:css-remove-version && npm run dev:sass & browser-sync start --config $npm_package_config_vars_build_browsersync",
+    "dev:css-remove-version": "node $npm_package_config_vars_build_cssRemoveVersion",
+    "dev:sass": "sass $npm_package_config_vars_build_css $npm_package_config_vars_css_fileFullPath -w",
     "prod": "npm run prod:sass && npm run prod:prefix && npm run prod:css-add-version",
-    "prod:sass": "sass ./src/assets/scss/main.scss $npm_package_config_vars_css_fileFullPath --style compressed",
-    "prod:css-add-version": "node ./src/build/css-add-version.js",
+    "prod:sass": "sass $npm_package_config_vars_build_css $npm_package_config_vars_css_fileFullPath --style compressed",
+    "prod:css-add-version": "node $npm_package_config_vars_build_cssAddVersion",
     "prod:prefix": "postcss $npm_package_config_vars_css_fileFullPath -u autoprefixer -r --no-map",
     "cert": "rm -rf $npm_package_config_paths_src_certs && mkdir -p $npm_package_config_paths_src_certs && docker cp ddev-router:/etc/nginx/certs $npm_package_config_paths_src_assets"
   },
   "devDependencies": {
-    "cheerio": "^1.0.0-rc.12",
-    "sass": "^1.77.5"
+    "sass": "^1.77.6"
   },
   "dependencies": {
-    "autoprefixer": "^9.5.1",
+    "autoprefixer": "^10.4.19",
     "browser-sync": "^3.0.2",
     "browserslist": "^4.5.4",
-    "postcss": "^7.0.14",
-    "postcss-cli": "^6.1.2"
+    "cheerio": "^1.0.0-rc.12",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
+    "validator": "^13.12.0"
   },
   "engines": {
-    "node": "16"
+    "node": "21.x"
   },
   "browserslist": [
     "last 4 version"
