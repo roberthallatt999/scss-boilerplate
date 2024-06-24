@@ -6,7 +6,7 @@ This has been tested and works for Mac OS.
 
 ## Requirments
 
-- [node.js](https://nodejs.org/en) - version 16
+- [node.js](https://nodejs.org/en) - version 21
 - [ddev](https://ddev.readthedocs.io/en/stable/users/install/)
 - [Docker](https://docs.docker.com/get-docker/)
 
