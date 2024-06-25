@@ -18,20 +18,26 @@ const pkgPath = './package.json';
 const pkgContents = fs.readFileSync(pkgPath, 'utf8');
 const pkg = JSON.parse(pkgContents);
 
+
 if (!pkg.config.browsersync.proxyUrl) {
 
   module.exports = {
     "ui": {
-        "port": pkg.config.browsersync.uiPort
+      "port": 3001
     },
-    "files": "dist/**/*",
+    "files": {
+      "watch": ["./dist/**/*.*"]
+    },
     "watch": true,
     "proxy": false,
     "watchOptions": {
       "usePolling": true,
       "interval": 500,
     },
-    "server": true,
+    // Specify the base directory for the server
+    "server": {
+      "baseDir": "./dist"
+    },
     "port": pkg.config.browsersync.port,
     "open": true
   };
@@ -59,6 +65,7 @@ if (!pkg.config.browsersync.proxyUrl) {
 };
 
 }
+
 
 
 
