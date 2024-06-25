@@ -24,19 +24,16 @@ if (!pkg.config.browsersync.proxyUrl) {
     "ui": {
         "port": pkg.config.browsersync.uiPort
     },
-    "files": pkg.config.browsersync.files.watch,
+    "files": "dist/**/*",
     "watch": true,
-    "server": {
-      baseDir: "dist"
-    },
     "proxy": false,
     "watchOptions": {
       "usePolling": true,
       "interval": 500,
     },
-    "server": false,
+    "server": true,
     "port": pkg.config.browsersync.port,
-    "open": "false"
+    "open": true
   };
 
 } else {
@@ -54,7 +51,7 @@ if (!pkg.config.browsersync.proxyUrl) {
     "server": false,
     "proxy": pkg.config.browsersync.proxyUrl,
     "port": pkg.config.browsersync.port,
-    "open": "false",
+    "open": true,
     "https": {
         key: pkg.config.browsersync.sslKey,
         cert: pkg.config.browsersync.sslCert,
