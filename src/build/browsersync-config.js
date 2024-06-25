@@ -26,6 +26,10 @@ if (!pkg.config.browsersync.proxyUrl) {
     },
     "files": pkg.config.browsersync.files.watch,
     "watch": true,
+    "server": {
+      baseDir: "dist"
+    },
+    "proxy": false,
     "watchOptions": {
       "usePolling": true,
       "interval": 500,
