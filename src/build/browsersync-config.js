@@ -18,7 +18,26 @@ const pkgPath = './package.json';
 const pkgContents = fs.readFileSync(pkgPath, 'utf8');
 const pkg = JSON.parse(pkgContents);
 
- module.exports = {
+if (!pkg.config.browsersync.proxyUrl) {
+
+  module.exports = {
+    "ui": {
+        "port": pkg.config.browsersync.uiPort
+    },
+    "files": pkg.config.browsersync.files.watch,
+    "watch": true,
+    "watchOptions": {
+      "usePolling": true,
+      "interval": 500,
+    },
+    "server": false,
+    "port": pkg.config.browsersync.port,
+    "open": "false"
+  };
+
+} else {
+
+  module.exports = {
     "ui": {
         "port": pkg.config.browsersync.uiPort
     },
@@ -35,5 +54,11 @@ const pkg = JSON.parse(pkgContents);
     "https": {
         key: pkg.config.browsersync.sslKey,
         cert: pkg.config.browsersync.sslCert,
-      },
+  },
 };
+
+}
+
+
+
+
