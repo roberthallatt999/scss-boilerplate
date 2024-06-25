@@ -11,7 +11,7 @@
     "browsersync": {
       "sslKey": "./src/assets/certs/master.key",
       "sslCert": "./src/assets/certs/master.crt",
-      "proxyUrl": "https://example.test",
+      "proxyUrl": "",
       "files": {
         "watch": [
           "src/assets/scss/**/*.scss",
